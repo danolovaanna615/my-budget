@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Трекер личного бюджета студента — Цифра в деле</title>
+<style>
+  :root{ --blue:#1f3a68; --blue2:#2e5aa8; --accent:#e6a23c; --bg:#f5f7fa; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Segoe UI',Arial,sans-serif; color:#2b2b2b; background:var(--bg); line-height:1.6; }
+  .wrap{ max-width:900px; margin:0 auto; padding:0 16px; }
+
+  header{ background:linear-gradient(135deg,var(--blue),var(--blue2)); color:#fff; padding:34px 0 30px; }
+  .badge{ display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.35);
+          border-radius:20px; padding:4px 14px; font-size:13px; letter-spacing:.5px; margin-bottom:14px; }
+  h1{ font-size:30px; line-height:1.25; margin-bottom:10px; }
+  .sub{ font-size:16px; opacity:.92; max-width:640px; }
+
+  section{ background:#fff; border-radius:14px; padding:26px 24px; margin:22px 0;
+           box-shadow:0 2px 10px rgba(31,58,104,.07); }
+  h2{ color:var(--blue); font-size:21px; margin-bottom:14px; }
+  h2::before{ content:""; display:block; width:44px; height:3px; background:var(--accent);
+              border-radius:2px; margin-bottom:8px; }
+
+  .cards{ display:flex; flex-wrap:wrap; gap:12px; margin:16px 0; }
+  .card{ flex:1 1 160px; background:#eef2fa; border:1px solid #d8e0f0; border-radius:12px;
+         padding:14px 16px; text-align:center; }
+  .card b{ display:block; font-size:26px; color:var(--blue); }
+  .card span{ font-size:13px; color:#555; }
+
+  .bar-row{ display:flex; align-items:center; gap:10px; margin:10px 0; }
+  .bar-label{ flex:0 0 200px; font-size:14px; color:#333; }
+  .bar-track{ flex:1 1 auto; background:#e9edf3; border-radius:8px; height:16px; overflow:hidden; }
+  .bar-fill{ height:100%; background:linear-gradient(90deg,var(--blue2),#5b8ad4); border-radius:8px; }
+  .bar-val{ flex:0 0 52px; font-weight:700; color:#222; font-size:14px; text-align:right; }
+
+  .steps{ counter-reset:s; }
+  .step{ position:relative; padding-left:46px; margin:14px 0; }
+  .step::before{ counter-increment:s; content:counter(s); position:absolute; left:0; top:0;
+    width:30px; height:30px; border-radius:50%; background:var(--blue2); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:700; }
+  .step b{ color:var(--blue); }
+
+  .letter{ background:#f3f6fc; border:1px dashed #b9c6e0; border-radius:12px; padding:18px 20px; margin-top:12px; }
+  .letter h3{ color:var(--blue); margin-bottom:10px; font-size:16px; }
+  .letter table{ width:100%; border-collapse:collapse; margin:8px 0 12px; }
+  .letter td{ padding:6px 10px; border-bottom:1px solid #dde4ef; font-size:15px; }
+  .letter td:last-child{ text-align:right; white-space:nowrap; font-weight:600; color:#222; }
+  .letter .total td{ border-bottom:none; border-top:2px solid var(--blue); font-weight:700; }
+  .letter .note{ font-size:14px; color:#444; }
+
+  ul.tech{ margin:8px 0 0 18px; }
+  ul.tech li{ margin:7px 0; }
+  ul.tech li b{ color:var(--blue); }
+
+  .cta{ text-align:center; margin:28px 0; }
+  .btn{ display:inline-block; background:var(--accent); color:#3d2b00; font-weight:700; font-size:17px;
+        padding:15px 34px; border-radius:30px; text-decoration:none; box-shadow:0 4px 12px rgba(230,162,60,.4);
+        transition:transform .15s; }
+  .btn:hover{ transform:translateY(-2px); }
+  .cta small{ display:block; margin-top:10px; color:#666; font-size:13px; }
+
+  footer{ text-align:center; padding:26px 16px 34px; color:#555; font-size:14px; }
+  footer b{ color:var(--blue); }
+  @media (max-width:600px){
+    h1{ font-size:23px; }
+    .bar-label{ flex:0 0 130px; font-size:13px; }
+    .card b{ font-size:22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="badge">Краевой конкурс «Цифра в деле» · направление «Цифра в быту»</span>
+    <h1>Трекер личного бюджета студента</h1>
+    <p class="sub">Простой инструмент, который помогает записывать траты за 30 секунд и сам присылает еженедельную сводку на почту — без приложений, регистрации и лишних действий.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>Что показал опрос</h2>
+    <p>Перед созданием продукта я провела опрос среди студентов первого курса — 25 человек ответили на вопросы о том, как они ведут (или не ведут) личный бюджет.</p>
+    <div class="cards">
+      <div class="card"><b>25</b><span>участников опроса</span></div>
+      <div class="card"><b>60%</b><span>не ведут систематический учёт трат</span></div>
+      <div class="card"><b>92%</b><span>готовы пользоваться инструментом</span></div>
+    </div>
+    <div class="bar-row"><div class="bar-label">Траты на еду — самая частая категория</div>
+      <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><div class="bar-val">60%</div></div>
+    <div class="bar-row"><div class="bar-label">Главная причина пропусков — «забываю записывать»</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><div class="bar-val">40%</div></div>
+    <p style="margin-top:12px; font-size:15px;">Типичная трата студентов-респондентов — <b>500–1000 ₽</b>. Это значит, что небольшие расходы происходят часто и именно они «теряются» из виду — а суммарно составляют заметную часть бюджета.</p>
+  </section>
+
+  <section class="steps">
+    <h2>Как это работает</h2>
+    <div class="step"><b>Записываешь трату.</b> Открываешь форму по кнопке ниже — это занимает около 30 секунд.</div>
+    <div class="step"><b>Данные собираются сами.</b> Каждая запись автоматически попадает в таблицу, ничего вручную считать не нужно.</div>
+    <div class="step"><b>Получаешь сводку.</b> Скрипт раз в неделю сам формирует сводку трат и отправляет её на почту — напоминать ему не требуется.</div>
+  </section>
+
+  <section>
+    <h2>Пример еженедельной сводки</h2>
+    <div class="letter">
+      <h3>📊 Твоя сводка за неделю · 9–15 ноября</h3>
+      <p style="margin-bottom:6px;">Привет! На этой неделе ты записал(а) 6 трат:</p>
+      <table>
+        <tr><td>Еда</td><td>890 ₽</td></tr>
+        <tr><td>Транспорт</td><td>340 ₽</td></tr>
+        <tr><td>Одежда</td><td>1 200 ₽</td></tr>
+        <tr class="total"><td>Итого за неделю</td><td>2 430 ₽</td></tr>
+      </table>
+      <p class="note">Больше всего — на одежду (1 200 ₽). Не забудь записывать траты в течение недели, так сводка будет точнее 🙂</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Технологии</h2>
+    <ul class="tech">
+      <li><b>HTML и CSS</b> — создание одностраничного сайта-трекера.</li>
+      <li><b>GitHub Pages</b> — бесплатная публикация сайта в интернете по постоянной ссылке.</li>
+      <li><b>Google Формы</b> — опрос для исследования проблемы и форма записи трат.</li>
+      <li><b>Google Таблицы</b> — автоматический сбор ответов и подсчёт статистики.</li>
+      <li><b>Google Apps Script</b> — скрипт с еженедельным триггером, который формирует сводку и отправляет её на почту.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>План развития</h2>
+    <ul class="tech">
+      <li>Графики трат по категориям прямо на сайте.</li>
+      <li>Напоминания о записях трат по настроению пользователя.</li>
+      <li>Сравнение недель: «эта неделя дороже прошлой на…».</li>
+    </ul>
+  </section>
+
+  <div class="cta">
+    <a class="btn" href="https://forms.gle/KGRvba4URn11raua9" target="_blank">Записать трату</a>
+    <small>Форма открывается с любого устройства — записать трату можно за 30 секунд.</small>
+  </div>
+
+</div>
+
+<footer>
+  <div>Проект создан для участия в краевом конкурсе проектов о цифровизации «Цифра в деле»</div>
+  <div style="margin-top:8px;"><b>Данилова Анна</b>, 1 курс, группа 11<br>КГБПОУ «Славгородский педагогический колледж»</div>
+</footer>
+
+</body>
+</html>
